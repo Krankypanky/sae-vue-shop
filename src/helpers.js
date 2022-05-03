@@ -4,3 +4,11 @@ export const formatErrors = (e) => {
   }
   return ["Es ist ein unbekannter Fehler aufgetreten"];
 };
+
+export const formatPrice = (currentPrice) => {
+  const formatter = new Intl.NumberFormat("de-AT", {
+    currency: "EUR",
+    style: "currency",
+  });
+  return formatter.format(currentPrice);
+};

@@ -17,7 +17,9 @@
 </template>
 
 <script>
+import CartModal from "./CartModal.vue";
 export default {
+  components: { CartModal },
   props: {
     cart: {
       type: Array,

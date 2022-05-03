@@ -57,7 +57,7 @@ import { format } from "date-fns";
 import LoadingIndicator from "@/components/LoadingIndicator.vue";
 import ErrorRenderer from "@/components/ErrorRenderer.vue";
 import AppNavigation from "@/components/AppNavigation.vue";
-import { formatErrors } from "../helpers.js";
+import { formatErrors, formatPrice } from "../helpers.js";
 
 export default {
   // componenten die registriert werden müssen
@@ -102,13 +102,7 @@ export default {
       cart.push(book);
       this.cart = cart;
     },
-    formatPrice: function (currentPrice) {
-      const formatter = new Intl.NumberFormat("de-AT", {
-        currency: "EUR",
-        style: "currency",
-      });
-      return formatter.format(currentPrice);
-    },
+    formatPrice,
     formatDate: function (publishedDate) {
       return publishedDate
         ? format(new Date(publishedDate.$date), "MM.yyyy")

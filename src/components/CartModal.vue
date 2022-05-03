@@ -67,7 +67,7 @@
             </ul>
             <hr />
             <span>
-              <strong>Totaler Preis: {{ total }} €</strong>
+              <strong>Totaler Preis: {{ formatPrice(total) }} €</strong>
             </span>
           </div>
         </div>
@@ -77,5 +77,47 @@
 </template>
 
 <script>
-export default {};
+import { formatPrice } from "@/helpers";
+
+export default {
+  data: () => ({
+    cartOpen: false,
+  }),
+  props: {
+    cart: {
+      type: Array,
+    },
+  },
+  methods: {
+    openCart: function () {
+      this.cartOpen = true;
+    },
+    closeCart: function () {
+      this.cartOpen = false;
+    },
+    formatPrice,
+    removeBookFromCart: function (index) {
+      this.$emit("removeBookFromCart", index);
+    },
+  },
+  computed: {
+    total() {
+      let currentPrice = 0;
+
+      this.cart.forEach((cartItem) => {
+        currentPrice += cartItem.price;
+      });
+
+      //   for (let i = 0; i <= this.cart.length; i++) {
+      //     const cartItem = this.cart[i];
+      //     currentPrice += cartItem.price;
+      //   }
+
+      return currentPrice.toFixed(2);
+      //   return this.cart
+      //     .map((cartItem) => cartItem.price)
+      //     .reduce((a, b) => a + b, 0);
+    },
+  },
+};
 </script>
