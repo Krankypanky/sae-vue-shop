@@ -1,10 +1,16 @@
 <template>
-  <nav class="bg-black">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view />
+  <div>
+    <book-listing></book-listing>
+  </div>
 </template>
+
+<script>
+import BookListing from "./views/book-listing.vue";
+
+export default {
+  components: { BookListing },
+};
+</script>
 
 <style lang="scss">
 #app {
