@@ -78,16 +78,12 @@
 
 <script>
 import { formatPrice } from "@/helpers";
+import { mapState } from "vuex";
 
 export default {
   data: () => ({
     cartOpen: false,
   }),
-  props: {
-    cart: {
-      type: Array,
-    },
-  },
   methods: {
     openCart: function () {
       this.cartOpen = true;
@@ -103,21 +99,14 @@ export default {
   computed: {
     total() {
       let currentPrice = 0;
-
       this.cart.forEach((cartItem) => {
         currentPrice += cartItem.price;
       });
-
-      //   for (let i = 0; i <= this.cart.length; i++) {
-      //     const cartItem = this.cart[i];
-      //     currentPrice += cartItem.price;
-      //   }
-
       return currentPrice.toFixed(2);
-      //   return this.cart
-      //     .map((cartItem) => cartItem.price)
-      //     .reduce((a, b) => a + b, 0);
     },
+    ...mapState({
+      cart: (state) => state.cart,
+    }),
   },
 };
 </script>
