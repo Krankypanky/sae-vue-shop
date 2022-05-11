@@ -100,8 +100,8 @@ export default {
           email: this.email,
           password: this.password,
         })
-        .then((data) => {
-          console.log(data);
+        .then(() => {
+          this.$router.push("/login");
         })
         .catch((e) => {
           console.error(e);
