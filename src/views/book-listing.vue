@@ -83,10 +83,11 @@ export default {
         : null;
     },
     addBookToCart: function (book) {
-      this.$store.dispatch("addBookToCart", {
-        id: 1,
-        book,
+      this.$toast.open({
+        message: `Das Buch ${book.title} wurde zum Warenkorb hinzugefügt`,
+        type: "info",
       });
+      this.$store.dispatch("addBookToCart", book);
     },
   },
 };

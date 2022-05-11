@@ -11,10 +11,16 @@ const DEFAULT_STATE = {
 export default createStore({
   state: DEFAULT_STATE,
   mutations: {
+    setErrors: (state, errors) => {
+      state.errors = errors;
+    },
     addBookToCart: BookService.addBookToCart,
     removeBookFromCart: BookService.removeBookFromCart,
   },
   actions: {
+    setErrors({ commit }, errors) {
+      commit("setErrors", errors);
+    },
     addBookToCart({ commit }, book) {
       console.log("addBookToCart triggered");
       commit("addBookToCart", book);

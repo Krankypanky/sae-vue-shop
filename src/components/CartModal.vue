@@ -59,7 +59,7 @@
 
                 <button
                   class="p-1 font-bold text-white bg-red-500 rounded hover:red-700"
-                  @click="removeBookFromCart(index)"
+                  @click="removeBookFromCart(index, book)"
                 >
                   x
                 </button>
@@ -92,8 +92,19 @@ export default {
       this.cartOpen = false;
     },
     formatPrice,
-    removeBookFromCart: function (index) {
-      this.$emit("removeBookFromCart", index);
+    removeBookFromCart: function (index, book) {
+      // 1. dispatch ruft action auf
+      // 2. action löst die mutation aus
+      // 3. mutation verändert Datensatz im store
+      // 4. rerender mit neuem State von allen Komponenten die den Store auslesen
+      this.$store.dispatch("removeBookFromCart", index);
+
+      // const book = this.cart[index];
+
+      this.$toast.open({
+        message: `Das Buch ${book.title} wurde aus der Warenkorb entfernt`,
+        type: "info",
+      });
     },
   },
   computed: {
